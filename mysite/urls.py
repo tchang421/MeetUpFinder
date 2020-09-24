@@ -14,8 +14,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
+from django.conf import settings
 from django.contrib import admin
+from django.contrib.auth.views import LogoutView
+from django.urls import include, path
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    path('events/',include('eventFinder.urls')),
+    path('', include('social_django.urls', namespace='social')),
+    path('logout/', LogoutView, {'next_page': settings.LOGOUT_REDIRECT_URL},
+    name='logout'),
 ]
