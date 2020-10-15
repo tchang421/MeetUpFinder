@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'eventFinder',
-    'social_django'
+    'social_django',
+    'bootstrap4'
 ]
 
 MIDDLEWARE = [
