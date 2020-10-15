@@ -6,6 +6,11 @@ venv
 
 
 # django related
+
+# Collected static files
+staticFiles
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
