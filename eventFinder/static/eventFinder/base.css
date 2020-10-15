@@ -18,3 +18,9 @@ body {
 div#navbarTabs{
     display: inline-flex
 }
+
+
+/* events/index */
+div#eventIndexBanner{
+    background: none;
+}
