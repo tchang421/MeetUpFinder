@@ -2,6 +2,9 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'eventFinder/base.css' %}">
 
+<a href="{% url 'eventFinder:index' %}">Home Page</a>
+<br><br>
+
 <a href="{% url 'eventFinder:create' %}"> Create new event</a>
 
 {% if event_list %}
