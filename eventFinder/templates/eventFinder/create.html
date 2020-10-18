@@ -1,0 +1,7 @@
+<hi>Create new event</hi>
+<br/><br/>
+    <form action="{% url 'eventFinder:creating' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type='submit' class="save btn btn-default" >Create Event</button>
+    </form>

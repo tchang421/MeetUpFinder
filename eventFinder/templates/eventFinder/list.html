@@ -2,6 +2,8 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'eventFinder/base.css' %}">
 
+<a href="{% url 'eventFinder:create' %}"> Create new event</a>
+
 {% if event_list %}
     <ul>
     {% for event in event_list %}
@@ -11,5 +13,3 @@
 {% else %}
     <p>No events are available.</p>
 {% endif %}
-
-<a href="{% url 'eventFinder:list' %}"> See events again?</a>

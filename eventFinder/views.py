@@ -7,6 +7,7 @@ from django.views.generic.edit import CreateView
 from django.utils import timezone
 
 from .models import Event
+from .forms import EventForm
 
 
 def index(request):
@@ -24,4 +25,16 @@ class EventListView(generic.ListView):
     def get_queryset(self):
         return Event.objects.all()
 
+class CreateView(CreateView):
+    model = Event
+    form_class = EventForm
+    template_name = 'eventFinder/create.html'
+
+def creating(request):
+    if request.method == "POST":
+        form = EventForm(request.POST)
+        if form.is_valid():
+            event = form.save(commit=False)
+            event.save()
+    return HttpResponseRedirect(reverse('eventFinder:list'))
 
