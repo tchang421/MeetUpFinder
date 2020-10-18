@@ -1,3 +1,7 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'eventFinder/base.css' %}">
+
 <hi>Create new event</hi>
 <br/><br/>
     <form action="{% url 'eventFinder:creating' %}" method="post">
