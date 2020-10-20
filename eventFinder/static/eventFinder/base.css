@@ -24,3 +24,7 @@ div#navbarTabs{
 div#eventIndexBanner{
     background: none;
 }
+
+div#eventCards{
+    color: black;
+}
