@@ -15,24 +15,19 @@ from .models import Event
 
 class IndexView(View):
     def get(self, request, *args, **kwargs):
-        context = {}
-        # if request.user.is_authenticated:
-        #     context['logged_in']=True
-        # else:
-        #     context['logged_in']=False
+        context = {
+            'events':Event.objects.all(),
+        }
         return render(request,'eventFinder/index.html',context)
     
     # @login_required(login_url=settings.LOGIN_URL)
     def post(self, request, *args, **kwargs):
         event_name = request.POST['event_name']
-        print('\n\n\n')
-        print(request);
         author = request.user
         pub_date = timezone.now()
         new_event = Event(event_name=event_name, author=author, pub_date=pub_date)
         new_event.save();
         return redirect(reverse('eventFinder:index'), user=request.user)
-        # return HttpResponse('hi')
 
 
 class EventListView(generic.ListView):
