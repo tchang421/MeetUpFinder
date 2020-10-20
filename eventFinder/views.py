@@ -1,13 +1,16 @@
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
+from django.http import request
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.views import generic
+from django.views.generic.base import TemplateView, View
 from django.views.generic.edit import CreateView
 from django.utils import timezone
 
 from .models import Event
 from .forms import EventForm
+
 
 
 def index(request):
@@ -29,6 +32,10 @@ class CreateView(CreateView):
     model = Event
     form_class = EventForm
     template_name = 'eventFinder/create.html'
+
+class NewView(View):
+    def get(self, request):
+        return render(request,'eventFinder/new.html')
 
 def creating(request):
     if request.method == "POST":
