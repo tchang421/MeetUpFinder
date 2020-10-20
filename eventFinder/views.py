@@ -1,26 +1,39 @@
-from django.http import HttpResponseRedirect
-from django.http import HttpResponse
-from django.http import request
-from django.shortcuts import get_object_or_404, render
+from django.contrib.auth.decorators import login_required
+from django.conf import settings
+from django.http import HttpResponse, HttpResponseRedirect, request
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
+from django.urls.base import reverse_lazy
+from django.utils import timezone
 from django.views import generic
 from django.views.generic.base import TemplateView, View
 from django.views.generic.edit import CreateView
-from django.utils import timezone
 
-from .models import Event
 from .forms import EventForm
+from .models import Event
 
 
+class IndexView(View):
+    def get(self, request, *args, **kwargs):
+        context = {}
+        # if request.user.is_authenticated:
+        #     context['logged_in']=True
+        # else:
+        #     context['logged_in']=False
+        return render(request,'eventFinder/index.html',context)
+    
+    # @login_required(login_url=settings.LOGIN_URL)
+    def post(self, request, *args, **kwargs):
+        event_name = request.POST['event_name']
+        print('\n\n\n')
+        print(request);
+        author = request.user
+        pub_date = timezone.now()
+        new_event = Event(event_name=event_name, author=author, pub_date=pub_date)
+        new_event.save();
+        return redirect(reverse('eventFinder:index'), user=request.user)
+        # return HttpResponse('hi')
 
-def index(request):
-    context = {}
-    if request.user.is_authenticated:
-        context['logged_in']=True
-    else:
-        context['logged_in']=False
-
-    return render(request,'eventFinder/index.html',context)
 
 class EventListView(generic.ListView):
     template_name = 'eventFinder/list.html'
@@ -34,7 +47,7 @@ class CreateView(CreateView):
     template_name = 'eventFinder/create.html'
 
 class NewView(View):
-    def get(self, request):
+    def get(self, request, *args, **kwargs):
         return render(request,'eventFinder/new.html')
 
 def creating(request):
