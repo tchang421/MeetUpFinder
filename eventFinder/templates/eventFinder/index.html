@@ -11,6 +11,21 @@
             </p>
         </div>
     </div>
+    <div class="container" id="eventCards">
+        <div class="row">
+            {% for event in events %}
+                <div class="col-4">
+                    <div class="card mb-5">
+                        <div class="card-body">
+                            <h5 class="card-title">Event Name: {{event.event_name}}</h5>
+                            <p class="card-text">Created by: {{event.author.username}}</p>
+                            <p class="card-text">published on: {{event.pub_date}}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
 
 
