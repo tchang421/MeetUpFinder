@@ -1,6 +1,6 @@
 {% extends "./base.html" %}
 {% block content %}
-    <form action="{% url 'eventFinder:creating' %}" method="POST">
+    <form action="{% url 'eventFinder:index' %}" method="POST">
     {% csrf_token %}
         <div class="container d-flex flex-column">
             <div class="form-row d-flex justify-content-center">
