@@ -31,7 +31,7 @@
                             </li>
                         </ul>
                     </div>
-                    {% if logged_in %}
+                    {% if backends %}
                         <span id='welcomeMessage'>Hi. You're logged in.</span>
                     {% else %}
                         <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-outline-light">
