@@ -2,6 +2,7 @@ language: python
 python:
   - "3.8"
 install:
+  pip install -r requirement.txt
   python manage.py collectstatic --no-input
 script: python manage.py test
 deploy:
