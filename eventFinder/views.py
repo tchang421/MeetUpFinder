@@ -17,6 +17,7 @@ class IndexView(View):
     def get(self, request, *args, **kwargs):
         context = {
             'events':Event.objects.all(),
+            'user':request.user
         }
         return render(request,'eventFinder/index.html',context)
     
