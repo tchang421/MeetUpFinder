@@ -31,8 +31,9 @@
                             </li>
                         </ul>
                     </div>
-                    {% if logged_in %}
-                        <span id='welcomeMessage'>Hi. You're logged in.</span>
+                    {% comment %} <span>{{backends}}</span> {% endcomment %}
+                    {% if user.is_authenticated %}
+                        <span id='welcomeMessage'>Hi, {{user}}. You're logged in.</span>
                     {% else %}
                         <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-outline-light">
                         Login
