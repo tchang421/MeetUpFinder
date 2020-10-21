@@ -19,10 +19,10 @@
             <nav class="navbar navbar-expand fixed-top navbar-dark justify-content-between">
                 <div class="container">
                     <div id="navbarTabs">
-                        <a href="/" class="navbar-brand">LOGO</a>
+                        <a href="{% url 'eventFinder:index' %}" class="navbar-brand">Home</a>
                         <ul class="nav navbar-nav">
                             <li class="nav-item active">
-                                <a class="nav-link" href="/events/list">
+                                <a class="nav-link" href="{% url 'eventFinder:list' %}">
                                     Events
                                 </a>
                             </li>
@@ -43,6 +43,7 @@
                 </div>
             </nav>
         </section>
+
         <section id="content">
             {% block content %}{% endblock %}
         </section>
