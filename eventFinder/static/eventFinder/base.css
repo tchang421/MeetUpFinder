@@ -12,7 +12,12 @@ body {
     ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
     padding-top: 56px;
-    color: white;
+    color: black;
+}
+
+/*Titles for pages*/
+#title{
+    color:white;
 }
 
 div#navbarTabs{
@@ -24,3 +29,13 @@ div#navbarTabs{
 div#eventIndexBanner{
     background: none;
 }
+
+#main_text{
+color: white;
+}
+
+
+
+
+
+.

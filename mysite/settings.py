@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'eventFinder',
     'social_django',
-    'bootstrap4'
+    'bootstrap4',
+    'bootstrap_datepicker_plus'
 ]
 
 MIDDLEWARE = [
@@ -101,6 +102,11 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+#configurations for bootstrap
+BOOTSTRAP4 = {
+    'include_jquery': True,
+}
 
 
 # Internationalization

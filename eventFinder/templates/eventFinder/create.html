@@ -1,11 +1,57 @@
-{% load static %}
+  {% load bootstrap4 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript jquery='full' %}
+  {% load static %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'eventFinder/base.css' %}">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Page</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'eventFinder/base.css' %}">
+</head>
+<body>
+<div id = "main_text">
+    {{ form.media }}
+    <section id="navbar">
+            <nav class="navbar navbar-expand fixed-top navbar-dark justify-content-between">
+                <div class="container">
+                    <div id="navbarTabs">
+                        <a href="{% url 'eventFinder:index' %}" class="navbar-brand">Home</a>
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/events/list">
+                                    Events
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">dummy</a>
+                            </li>
+                        </ul>
+                    </div>
+                    {% if logged_in %}
+                        <span id='welcomeMessage'>Hi. You're logged in.</span>
+                    {% else %}
+                        <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-outline-light">
+                        Login
+                    </a>
+                    {% endif %}
+                    {% comment %} <a href="" class="btn btn-outline-light">Login</a> {% endcomment %}
+                </div>
+            </nav>
+        </section>
+    <br>
+    <h1 class = "text-center" id = "title">Create new event</h1>
+        <form action="{% url 'eventFinder:creating' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type='submit' class="btn btn-primary">Create Event</button>
+        </form>
+</div>
+</body>
+</html>
 
-<hi>Create new event</hi>
-<br/><br/>
-    <form action="{% url 'eventFinder:creating' %}" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type='submit' class="save btn btn-default" >Create Event</button>
-    </form>
+
+
+
+
