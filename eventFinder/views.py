@@ -23,33 +23,16 @@ class IndexView(View):
     
     # @login_required(login_url=settings.LOGIN_URL)
     def post(self, request, *args, **kwargs):
-        event_name = request.POST['event_name']
-        author = request.user
-        new_event = Event(event_name=event_name, author=author)
-        new_event.save();
-        return redirect(reverse('eventFinder:index'), user=request.user)
-
-
-class EventListView(generic.ListView):
-    template_name = 'eventFinder/list.html'
-    context_object_name = 'event_list'
-    def get_queryset(self):
-        return Event.objects.all()
-
-class CreateView(CreateView):
-    model = Event
-    form_class = EventForm
-    template_name = 'eventFinder/create.html'
-
-class NewView(View):
-    def get(self, request, *args, **kwargs):
-        return render(request,'eventFinder/new.html')
-
-def creating(request):
-    if request.method == "POST":
         form = EventForm(request.POST)
         if form.is_valid():
-            event = form.save(commit=False)
-            event.save()
-    return HttpResponseRedirect(reverse('eventFinder:list'))
+            new_event = form.save(commit=False)
+            new_event.author = request.user
+            new_event.save();
+        return redirect(reverse('eventFinder:index'))
+
+class NewView(CreateView):
+    model = Event
+    form_class = EventForm
+    template_name = 'eventFinder/new.html'
+
 
