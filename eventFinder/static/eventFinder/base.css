@@ -40,4 +40,11 @@ div#eventCards{
 /* events/new */
 form#eventNewForm{
     color: black;
+    width: 500px;
+}
+
+form#eventNewForm div.input-group-prepend span{
+    width: 120px;
+    display: inline-block;
+    text-align: center;
 }

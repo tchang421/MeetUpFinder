@@ -3,28 +3,30 @@
 {{form.media}}
 {% endblock head %}
 {% block content %}
-    <form action="{% url 'eventFinder:index' %}" method="post" id="eventNewForm">
-        {% csrf_token %}
-        <div class="container d-flex flex-column">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Event Name</span>
+    <div class="d-flex justify-content-center">
+        <form action="{% url 'eventFinder:index' %}" method="post" id="eventNewForm">
+            {% csrf_token %}
+            <div class="container d-flex flex-column">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Event Name</span>
+                    </div>
+                    {{form.event_name}}
                 </div>
-                {{form.event_name}}
+    
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Event Date</span>
+                    </div>
+                    {{form.event_date}}
+                    <div class="input-group-addon input-group-append">
+                        <div class="input-group-text"><i class="glyphicon glyphicon-calendar"></i></div>
+                    </div>
+                </div>
+                <button type='submit' class="btn btn-primary">Create Event</button>
             </div>
-
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Event Date</span>
-                </div>
-                {{form.event_date}}
-                <div class="input-group-addon input-group-append">
-                    <div class="input-group-text"><i class="glyphicon glyphicon-calendar"></i></div>
-                </div>
-            </div>
-            <button type='submit' class="btn btn-primary">Create Event</button>
-        </div>
-    </form>
+        </form>
+    </div>
 {% endblock %}
 
 
