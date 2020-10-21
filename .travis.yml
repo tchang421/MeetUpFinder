@@ -1,8 +1,9 @@
 language: python
 python:
-  - '3.8'
-script:
-  python manage.py test
+  - "3.8"
+install:
+  python manage.py collectstatic --no-input
+script: python manage.py test
 deploy:
   provider: heroku
   api_key:
