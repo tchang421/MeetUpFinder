@@ -12,28 +12,39 @@ body {
     ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
     padding-top: 56px;
-    color: black;
-}
-
-/*Titles for pages*/
-#title{
-    color:white;
+    /* color: white; */
 }
 
 div#navbarTabs{
     display: inline-flex
 }
 
+section#navbar{
+    color: white;
+}
+
 
 /* events/index */
 div#eventIndexBanner{
     background: none;
+    color: white;
 }
 
 div#eventCards{
     color: black;
 }
 #main_text{
-color: white;
+    color: white;
 }
 
+/* events/new */
+form#eventNewForm{
+    color: black;
+    width: 500px;
+}
+
+form#eventNewForm div.input-group-prepend span{
+    width: 120px;
+    display: inline-block;
+    text-align: center;
+}

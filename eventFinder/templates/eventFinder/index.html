@@ -1,6 +1,6 @@
 {% extends "./base.html" %}
 {% block content %}
-    <div class="container" id="main_text">
+    <div class="container" id="eventIndexBanner">
         <div class="jumbotron border border-white rounded" id='eventIndexBanner'>
             <h1 class="display-3">Events index page</h1>
             <p class="lead">Helper text</p>
@@ -27,22 +27,3 @@
         </div>
     </div>
 {% endblock %}
-
-
-{% comment %} <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    {% if logged_in %}
-        <h1>Hi. You're logged in</h1>
-    {% else %}
-        <a href="{% url 'social:begin' 'google-oauth2' %}">
-        Login
-      </a>
-    {% endif %}
-</body>
-</html> {% endcomment %}

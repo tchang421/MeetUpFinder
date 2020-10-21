@@ -23,6 +23,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     path('events/',include('eventFinder.urls')),
     path('', include('social_django.urls', namespace='social')),
-    path('logout/', LogoutView, {'next_page': settings.LOGOUT_REDIRECT_URL},
+    path('logout/', LogoutView.as_view(), {'next_page': settings.LOGOUT_REDIRECT_URL},
     name='logout'),
 ]
