@@ -15,26 +15,26 @@ body {
     /* color: white; */
 }
 
-/*Titles for pages*/
-#title{
-    color:white;
-}
-
 div#navbarTabs{
     display: inline-flex
+}
+
+section#navbar{
+    color: white;
 }
 
 
 /* events/index */
 div#eventIndexBanner{
     background: none;
+    color: white;
 }
 
 div#eventCards{
     color: black;
 }
 #main_text{
-color: white;
+    color: white;
 }
 
 /* events/new */

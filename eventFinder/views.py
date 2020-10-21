@@ -1,12 +1,7 @@
 from django.contrib.auth.decorators import login_required
-from django.conf import settings
-from django.http import HttpResponse, HttpResponseRedirect, request
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import redirect, render
 from django.urls import reverse
-from django.urls.base import reverse_lazy
-from django.utils import timezone
-from django.views import generic
-from django.views.generic.base import TemplateView, View
+from django.views.generic.base import View
 from django.views.generic.edit import CreateView
 
 from .forms import EventForm
