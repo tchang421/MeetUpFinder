@@ -24,8 +24,7 @@ class IndexView(View):
     def post(self, request, *args, **kwargs):
         event_name = request.POST['event_name']
         author = request.user
-        pub_date = timezone.now()
-        new_event = Event(event_name=event_name, author=author, pub_date=pub_date)
+        new_event = Event(event_name=event_name, author=author)
         new_event.save();
         return redirect(reverse('eventFinder:index'), user=request.user)
 
