@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views.generic.base import View
 from django.views.generic.edit import CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import EventForm
 from .models import Event
@@ -25,7 +26,7 @@ class IndexView(View):
             new_event.save();
         return redirect(reverse('eventFinder:index'))
 
-class NewView(CreateView):
+class NewView(LoginRequiredMixin, CreateView):
     model = Event
     form_class = EventForm
     template_name = 'eventFinder/new.html'
