@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.views.generic.base import View
 from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils.decorators import method_decorator
 
 from .forms import EventForm
 from .models import Event
@@ -13,11 +14,10 @@ class IndexView(View):
     def get(self, request, *args, **kwargs):
         context = {
             'events':Event.objects.all(),
-            'user':request.user
         }
         return render(request,'eventFinder/index.html',context)
     
-    # @login_required(login_url=settings.LOGIN_URL)
+    @method_decorator(login_required)
     def post(self, request, *args, **kwargs):
         form = EventForm(request.POST)
         if form.is_valid():
