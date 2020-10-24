@@ -29,4 +29,4 @@ urlpatterns = [
     name='logout'),
     url(r'^$',RedirectView.as_view(url=reverse_lazy('eventFinder:index'))),
     path('accounts/', include('django.contrib.auth.urls'))
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
