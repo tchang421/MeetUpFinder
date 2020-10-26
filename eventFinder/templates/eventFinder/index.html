@@ -19,7 +19,7 @@
                         <div class="card-body">
                             <a href="{% url 'eventFinder:show' event.id%}" class="card-title">Event Name: {{event.event_name}}</a>
                             <p class="card-text">Created by: {{event.author.username}}</p>
-                            <p class="card-text">published on: {{event.pub_date}}</p>
+                            <p class="card-text">Time: {{event.event_date}}</p>
                         </div>
                     </div>
                 </div>
