@@ -11,25 +11,19 @@
             </p>
         </div>
     </div>
-    <div class="container">
+    <div class="container mb-3">
         <div class="dropdown">
-              <button class="btn btn-secondary btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Sorting options
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                     <form action = '#' method="get" class="dropdown-item">
-                        <input type="submit" class="btn btn-danger btn-block" value="Sort Alphabetically" name="wordbtn">
-                     </form>
-                     <form action = '#' method="get" class="dropdown-item">
-                        <input type="submit" class="btn btn-primary btn-block" value="Sort by Event Date" name="datebtn">
-                    </form>
-                    <form action = '#' method="get" class="dropdown-item">
-                        <input type="submit" class="btn btn-success btn-block" value="Sort by Published Date" name="pubbtn">
-                    </form>
-              </div>
+            <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Sort by:
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            {% for name, field in orderings.items %}
+                <a class="dropdown-item" href="{% url 'eventFinder:index' %}?ordering={{field}}">{{name}}</a>
+            {% endfor %}
+            </div>
         </div>
-        <br>
     </div>
+
     <div class="container" id="eventCards">
         <div class="row">
             {% for event in events%}
