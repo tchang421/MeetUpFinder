@@ -1,4 +1,4 @@
-{% extends "./base.html" %}
+{% extends "base.html" %}
 {% block content %}
     <div class="container" id="eventIndexBanner">
         <div class="jumbotron border border-white rounded" id='eventIndexBanner'>
@@ -7,39 +7,32 @@
             <hr class="my-2">
             <p>More info</p>
             <p class="lead">
-                <a class="btn btn-primary btn-lg" href="{% url 'eventFinder:new' %}" role="button">Create Event</a>
+                <a class="btn btn-primary btn-lg" href="{% url 'eventFinder:create' %}" role="button">Create Event</a>
             </p>
         </div>
     </div>
-    <div class="container">
+    <div class="container mb-3">
         <div class="dropdown">
-              <button class="btn btn-secondary btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Sorting options
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                     <form action = '#' method="get" class="dropdown-item">
-                        <input type="submit" class="btn btn-danger btn-block" value="Sort Alphabetically" name="wordbtn">
-                     </form>
-                     <form action = '#' method="get" class="dropdown-item">
-                        <input type="submit" class="btn btn-primary btn-block" value="Sort by Event Date" name="datebtn">
-                    </form>
-                    <form action = '#' method="get" class="dropdown-item">
-                        <input type="submit" class="btn btn-success btn-block" value="Sort by Published Date" name="pubbtn">
-                    </form>
-              </div>
+            <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Sort by:
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            {% for name, field in orderings.items %}
+                <a class="dropdown-item" href="{% url 'eventFinder:index' %}?ordering={{field}}">{{name}}</a>
+            {% endfor %}
+            </div>
         </div>
-        <br>
     </div>
+
     <div class="container" id="eventCards">
         <div class="row">
             {% for event in events%}
                 <div class="col-4">
                     <div class="card mb-5">
                         <div class="card-body">
-                            <h5 class="card-title">Event Name: {{event.event_name}}</h5>
+                            <a href="{% url 'eventFinder:show' event.id%}" class="card-title">Event Name: {{event.event_name}}</a>
                             <p class="card-text">Created by: {{event.author.username}}</p>
-                            <p class="card-text">Event date: {{event.event_date}}</p>
-                            <p class="card-text">Published on: {{event.pub_date}}</p>
+                            <p class="card-text">Time: {{event.event_date}}</p>
                         </div>
                     </div>
                 </div>

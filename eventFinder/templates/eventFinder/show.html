@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container" id="eventDetail">
+    <div class="jumbotron">
+        <h1 class="display-3">{{event.event_name}}</h1>
+        <p class="lead">Event Date: {{event.event_date|date:'Y-m-d'}}</p>
+        <hr class="my-2">
+        <p>Published by {{event.author}} on {{event.pub_date|date:'Y-m-d'}}</p>
+        {% if user == event.author %}
+            <a class="btn btn-primary" href="{% url 'eventFinder:update' event.id %}" role="button">Edit</a>
+            <a class="btn btn-danger" href="{% url 'eventFinder:delete' event.id %}" role="button">Delete</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}
