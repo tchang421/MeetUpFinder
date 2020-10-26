@@ -2,6 +2,7 @@ import datetime
 
 from django.db import models
 from django.db.models.deletion import CASCADE
+from django.urls.base import reverse
 from django.utils import timezone
 from django.contrib.auth.models import User
 
@@ -12,3 +13,7 @@ class Event(models.Model):
     author = models.ForeignKey(User, null=True, on_delete=CASCADE)
     def __str__(self):
         return self.event_name
+    
+    def get_absolute_url(self):
+        return reverse("eventFinder:show", kwargs={"pk": self.pk})
+    

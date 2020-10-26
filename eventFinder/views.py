@@ -27,9 +27,6 @@ class NewView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
-    def get_success_url(self) -> str:
-        return reverse('eventFinder:show', kwargs={'pk': self.object.id})
-
 class ShowView(DetailView):
     model = Event
     template_name='eventFinder/show.html'
@@ -39,8 +36,5 @@ class UpdateView(LoginRequiredMixin, UpdateView):
     model = Event
     form_class = EventForm
     template_name = 'eventFinder/form.html'
-
-    def get_success_url(self) -> str:
-        return reverse('eventFinder:show', kwargs={'pk': self.object.id})
 
 
