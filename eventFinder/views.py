@@ -18,6 +18,38 @@ class IndexView(ListView):
     context_object_name="events"
     template_name="eventFinder/index.html"
 
+    # def get(self, request, *args, **kwargs):
+    #     if(request.GET.get('datebtn')):
+    #         context = {
+    #             'events': Event.objects.all().order_by("event_date"),
+    #             # 'user':request.user
+    #         }
+    #     elif(request.GET.get('wordbtn')):
+    #         context = {
+    #             'events': Event.objects.all().order_by("event_name"),
+    #             # 'user':request.user
+    #         }
+    #     elif(request.GET.get('pubbtn')):
+    #         context = {
+    #             'events': Event.objects.all().order_by("pub_date"),
+    #             # 'user':request.user
+    #         }
+    #     else:
+    #         context = {
+    #             'events':Event.objects.all(),
+    #             # 'user':request.user
+    #         }
+    #     return render(request,'eventFinder/index.html',context)
+    
+    # # @login_required(login_url=settings.LOGIN_URL)
+    # def post(self, request, *args, **kwargs):
+    #     form = EventForm(request.POST)
+    #     if form.is_valid():
+    #         new_event = form.save(commit=False)
+    #         # new_event.author = request.user
+    #         new_event.save()
+    #     return redirect(reverse('eventFinder:index'))
+
 class NewView(LoginRequiredMixin, CreateView):
     model = Event
     form_class = EventForm
