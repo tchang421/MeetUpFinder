@@ -4,7 +4,7 @@
 {% endblock head %}
 {% block content %}
     <div class="d-flex justify-content-center">
-        <form action="{% if event %}{% url 'eventFinder:update' event.id%}{% else %}{% url 'eventFinder:index' %}{% endif %}" method="post" id="eventNewForm">
+        <form action="{% if event %}{% url 'eventFinder:update' event.id%}{% else %}{% url 'eventFinder:create' %}{% endif %}" method="post" id="eventNewForm">
             {% csrf_token %}
             <div class="container d-flex flex-column">
                 <div class="input-group mb-3">
