@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views.generic.base import View
+from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.decorators import method_decorator
@@ -30,5 +31,9 @@ class NewView(LoginRequiredMixin, CreateView):
     model = Event
     form_class = EventForm
     template_name = 'eventFinder/new.html'
+
+class ShowView(DetailView):
+    model = Event
+    template_name='eventFinder/show.html'
 
 
