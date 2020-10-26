@@ -23,7 +23,11 @@
                         <div class="input-group-text"><i class="glyphicon glyphicon-calendar"></i></div>
                     </div>
                 </div>
-                <button type='submit' class="btn btn-primary">Create Event</button>
+                {% if event %}
+                    <button type='submit' class="btn btn-primary">Update Event</button>
+                {% else %}
+                    <button type='submit' class="btn btn-primary">Create Event</button>
+                {% endif %}
             </div>
         </form>
     </div>
