@@ -13,22 +13,22 @@ class IndexView(View):
         if(request.GET.get('datebtn')):
             context = {
                 'events': Event.objects.all().order_by("event_date"),
-                'user':request.user
+                # 'user':request.user
             }
         elif(request.GET.get('wordbtn')):
             context = {
                 'events': Event.objects.all().order_by("event_name"),
-                'user':request.user
+                # 'user':request.user
             }
         elif(request.GET.get('pubbtn')):
             context = {
                 'events': Event.objects.all().order_by("pub_date"),
-                'user':request.user
+                # 'user':request.user
             }
         else:
             context = {
                 'events':Event.objects.all(),
-                'user':request.user
+                # 'user':request.user
             }
         return render(request,'eventFinder/index.html',context)
     
@@ -37,7 +37,7 @@ class IndexView(View):
         form = EventForm(request.POST)
         if form.is_valid():
             new_event = form.save(commit=False)
-            new_event.author = request.user
+            # new_event.author = request.user
             new_event.save()
         return redirect(reverse('eventFinder:index'))
 
@@ -47,3 +47,4 @@ class NewView(CreateView):
     template_name = 'eventFinder/new.html'
 
 
+###before pushing, uncomment out 4x
