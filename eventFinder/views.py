@@ -3,8 +3,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
+from django.urls.base import reverse_lazy
 from django.utils.decorators import method_decorator
-from django.views.generic.base import View
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
@@ -37,4 +37,7 @@ class UpdateView(LoginRequiredMixin, UpdateView):
     form_class = EventForm
     template_name = 'eventFinder/form.html'
 
-
+class DeleteView(LoginRequiredMixin,DeleteView):
+    model = Event
+    template_name="eventFinder/delete.html"
+    success_url = reverse_lazy('eventFinder:index')
