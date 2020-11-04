@@ -37,10 +37,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # custom apps
     'eventFinder',
+    'userprofile',
+
+    # dependencies
     'social_django',
     'bootstrap4',
     'bootstrap_datepicker_plus'
+
 ]
 
 MIDDLEWARE = [
