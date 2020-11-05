@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import request
 from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
@@ -49,10 +49,12 @@ class ShowView(DetailView):
     template_name='eventFinder/show.html'
 
 
-class UpdateView(LoginRequiredMixin, UpdateView):
+class UpdateView(UserPassesTestMixin, UpdateView):
     model = Event
     form_class = EventForm
     template_name = 'eventFinder/form.html'
+    def test_func(self):
+        return self.get_object().author == self.request.user
 
 class DeleteView(LoginRequiredMixin,DeleteView):
     model = Event
