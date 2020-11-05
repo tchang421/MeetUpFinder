@@ -8,8 +8,9 @@ class MyDateTimePickerInput(DateTimePickerInput):
 class EventForm(forms.ModelForm):
     class Meta:
         model = Event
-        fields = ('event_name', 'event_date')
+        fields = ('event_name', 'event_description', 'event_date')
         widgets = {
             'event_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'event_description': forms.TextInput(attrs={'class': 'form-control'}),
             'event_date': MyDateTimePickerInput(attrs={'class': 'form-control d-inline-block', 'id': 'calendar'})
         }
