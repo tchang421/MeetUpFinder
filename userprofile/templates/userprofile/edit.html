@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="d-flex justify-content-center">
+        <form action="{% url 'userprofile:update' userprofile.id%}" method="post" id="UserProfileNewForm">
+            {% csrf_token %}
+            <div class="container d-flex flex-column">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Display Name</span>
+                    </div>
+                    {{form.display_name}}
+                </div>
+    
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Bio</span>
+                    </div>
+                    {{form.bio}}
+                    <div class="input-group-addon input-group-append">
+                        <div class="input-group-text"><i class="glyphicon glyphicon-calendar"></i></div>
+                    </div>
+                </div>
+                <button type='submit' class="btn btn-primary">Update Profile</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

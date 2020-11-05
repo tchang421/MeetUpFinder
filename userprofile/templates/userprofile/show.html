@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <div class="jumbotron">
+            <h1>{{userprofile.display_name}}</h1>
+            {% if userprofile.bio %}
+                <hr>
+                <p>{{userprofile.bio}}</p>
+            {% endif %}
+            {% if userprofile.user == user %}
+                <hr>
+                <a href="{% url 'userprofile:update' userprofile.id%}" class="btn btn-primary">Edit</a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}
