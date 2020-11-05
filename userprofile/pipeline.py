@@ -9,6 +9,6 @@ def print_profile(backend, user, response, *args, **kwargs):
         print('no profile')
 
 def make_profile(backend, user, response, *args, **kwargs):
-    if not hasattr(user, 'profile'):
+    if kwargs['is_new']:
         newProfile = UserProfile(user=user)
         newProfile.save();
