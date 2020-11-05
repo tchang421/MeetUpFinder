@@ -34,7 +34,7 @@
 
                     <div id="navbarUserOptions">
                         {% if user.is_authenticated %}
-                            <span id='welcomeMessage'>Hi, <a href="{% url 'userprofile:show' user.id %}">{{user}}</a>. You're logged in.</span>
+                            <span id='welcomeMessage'>Hi, <a href="{% url 'userprofile:show' user.profile.id %}">{{user.profile.display_name}}</a>. You're logged in.</span>
                             <a href="{% url 'logout' %}" class="btn btn-outline-light ml-3">
                                 Logout
                             </a>

@@ -1,4 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>hi</h1>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>{{userprofile.display_name}}</h1>
+            {% if userprofile.bio %}
+                <hr>
+                <p>{{userprofile.bio}}</p>
+            {% endif %}
+            {% if userprofile.user == user %}
+                <hr>
+                <a href="" class="btn btn-primary">Edit</a>
+            {% endif %}
+        </div>
+    </div>
 {% endblock content %}
