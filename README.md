@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.com/uva-cs3240-f20/project-2-09.svg?token=dvwuMneQ9nxFNgioAUy2&branch=master)](https://travis-ci.com/uva-cs3240-f20/project-2-09)
 # Project
 This is the project for CS 3240: Advanced Software Development.
 
