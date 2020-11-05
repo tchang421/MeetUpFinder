@@ -24,6 +24,7 @@ from django.views.generic.base import RedirectView
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     path('events/',include('eventFinder.urls')),
+    path('profiles/',include('userprofile.urls')),
     path('', include('social_django.urls', namespace='social')),
     path('logout/', LogoutView.as_view(), {'next_page': settings.LOGOUT_REDIRECT_URL},
     name='logout'),
