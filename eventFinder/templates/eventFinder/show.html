@@ -4,6 +4,8 @@
     <div class="jumbotron">
         <h1 class="display-3">{{event.event_name}}</h1>
         <p class="lead">Event Date: {{event.event_date|date:'Y-m-d'}}</p>
+         <p class="lead">Event Type: {{event.event_type}}</p>
+        <h1 class="lead">{{event.event_description}}</h1>
         <hr class="my-2">
         <p>Published by <a href="{% url 'userprofile:show' event.author.profile.id%}">{{event.author.profile.display_name}}</a> on {{event.pub_date|date:'Y-m-d'}}</p>
         {% if user == event.author %}
