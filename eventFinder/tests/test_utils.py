@@ -1,4 +1,5 @@
 from ..models import Event
+from userprofile.models import UserProfile
 from django.contrib.auth.models import User
    
 def make_event(**kwargs):
@@ -6,7 +7,9 @@ def make_event(**kwargs):
     newEvent.save();
     return newEvent
 
-def make_User(**kwargs):
+def make_user(**kwargs):
     newUser = User(**kwargs)
     newUser.save();
+    newProfile = UserProfile(user=newUser)
+    newProfile.save();
     return newUser
