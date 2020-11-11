@@ -19,5 +19,5 @@ class EventForm(forms.ModelForm):
             'event_date': MyDateTimePickerInput(attrs={'class': 'form-control d-inline-block', 'id': 'calendar'}),
             'event_description': forms.TextInput(attrs={'class': 'form-control'}),
             'event_type': forms.Select(choices=EVENT_TYPE_CHOICES, attrs={'class': 'form-control'}),
-            'address': AddressWidget(attrs={'class': 'form-control'})
+            'address': AddressWidget(attrs={'required':'true','class': 'form-control'})
         }
