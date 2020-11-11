@@ -1,12 +1,30 @@
 {% extends 'base.html' %}
+{% load static %} 
+{% block head %}
+    <script>
+        const event = $.parseJSON("{{event_json|escapejs}}")[0];
+        const latitude = Number(event.fields.latitude);
+        const longitude = Number(event.fields.longitude);
+        const pinIconSrc = "{% static 'eventFinder/asset/pin.png' %}"
+    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/css/ol.css" type="text/css">
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/build/ol.js"></script>
+    <script src="{% static 'eventFinder/scripts/renderMap.js' %}"></script>
+{% endblock head %}
 {% block content %}
 <div class="container" id="eventDetail">
     <div class="jumbotron">
         <h1 class="display-3">{{event.event_name}}</h1>
         <p class="lead">Event Date: {{event.event_date|date:'Y-m-d'}}</p>
-         <p class="lead">Event Type: {{event.event_type}}</p>
-        <h1 class="lead">{{event.event_description}}</h1>
+        <p class="lead">Event Type: {{event.event_type}}</p>
         <hr class="my-2">
+        <h1 class="lead">{{event.event_description}}</h1>
+        <hr class="my-3">
+        <div class="d-flex justify-content-between">
+            <p>Address: <a href="https://www.google.com/maps/search/?api=1&query={{event.address|escape}}" target="_blank">{{event.address}}</a></p>
+            <a href="https://www.google.com/maps/dir/?api=1&destination={{event.address|escape}}" target="_blank">Get directions</a>
+        </div>
+        <div id="map"></div>
         <p>Published by <a href="{% url 'userprofile:show' event.author.profile.id%}">{{event.author.profile.display_name}}</a> on {{event.pub_date|date:'Y-m-d'}}</p>
         {% if user == event.author %}
             <a class="btn btn-primary" href="{% url 'eventFinder:update' event.id %}" role="button">Edit</a>

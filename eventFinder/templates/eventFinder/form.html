@@ -37,6 +37,15 @@
                         <div class="input-group-text"><i class="glyphicon glyphicon-calendar"></i></div>
                     </div>
                 </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Address</span>
+                    </div>
+                    {{form.address}}
+                </div>
+
+
                 {% if event %}
                     <button type='submit' class="btn btn-primary">Update Event</button>
                 {% else %}

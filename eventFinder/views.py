@@ -9,6 +9,7 @@ from django.utils.decorators import method_decorator
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
+from django.core.serializers import serialize
 
 from .forms import EventForm
 from .models import Event
@@ -47,6 +48,11 @@ class NewView(LoginRequiredMixin, CreateView):
 class ShowView(DetailView):
     model = Event
     template_name='eventFinder/show.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["event_json"] = serialize('json', [self.get_object()])
+        return context
+    
 
 
 class UpdateView(UserPassesTestMixin, UpdateView):

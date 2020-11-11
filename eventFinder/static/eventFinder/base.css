@@ -48,3 +48,9 @@ form#eventNewForm div.input-group-prepend span{
     display: inline-block;
     text-align: center;
 }
+
+/* events/show */
+div#map{
+    width: 100%;
+    height: 400px;
+}
