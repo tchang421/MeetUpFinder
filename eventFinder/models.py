@@ -24,7 +24,7 @@ class Event(models.Model):
     
     def save(self, *args, **kwargs):
         geolocator = GoogleV3(api_key='AIzaSyDwMQvVq5I887bnz3zAlz71Onjsq4_PYb0');
-        location = geolocator.geocode(self.address)
+        location = None if not self.address else geolocator.geocode(self.address)
         if location:
             self.latitude = location.latitude
             self.longitude = location.longitude
