@@ -6,7 +6,7 @@ from django.urls.base import reverse
 from django.utils import timezone
 from django.contrib.auth.models import User
 from address.models import AddressField
-
+from geopy.geocoders.googlev3 import GoogleV3
 
 class Event(models.Model):
     event_name = models.CharField(max_length=200)
@@ -21,6 +21,14 @@ class Event(models.Model):
         decimal_places=7, max_digits=10, default=38.0336)
     longitude = models.DecimalField(
         decimal_places=7, max_digits=10, default=-78.507980)
+    
+    def save(self, *args, **kwargs):
+        geolocator = GoogleV3(api_key='AIzaSyDwMQvVq5I887bnz3zAlz71Onjsq4_PYb0');
+        location = geolocator.geocode(self.address)
+        if location:
+            self.latitude = location.latitude
+            self.longitude = location.longitude
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.event_name
