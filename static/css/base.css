@@ -1,18 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
 body {
-    background: #2c3e50; /* fallback for old browsers */
-    background: -webkit-linear-gradient(
-        to right,
-        #4ca1af,
-        #2c3e50
-    ); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(
-        to right,
-        #4ca1af,
-        #2c3e50
-    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+    background: #2f2f35;
     padding-top: 56px;
-    /* color: white; */
+    font-family: 'Open Sans', sans-serif;
+    color: #2f2f35;
+}
+
+a{
+    color: #008BF8;
+}
+
+/* base navbar */
+#navbar{
+    font-family: 'Quicksand', sans-serif;
+}
+#navbar nav{
+    transition: background 200ms ease-out;
+}
+#navbar nav.scrolled{
+    background: #242429;
 }
 
 div#navbarTabs{
@@ -20,21 +27,34 @@ div#navbarTabs{
 }
 
 section#navbar{
-    color: white;
+    color: #eff2ee;
 }
 
+section#navbar a{
+    color: #9e856a;
+}
+
+#userOptionsButton{
+    color: #9e856a
+}
+
+section#navbar #userOptionsDropdown{
+    background: #eff2ee;
+    color: #2f2f35
+}
+
+section#navbar #userOptionsDropdown a{
+    color: #2f2f35
+}
 
 /* events/index */
 div#eventIndexBanner{
-    background: none;
-    color: white;
+    background: #eff2ee;
+    color: #2f2f35;
 }
 
-div#eventCards{
-    color: black;
-}
-#main_text{
-    color: white;
+div#eventCards div.card{
+    background: #eff2ee;
 }
 
 /* events/new */
@@ -50,6 +70,10 @@ form#eventNewForm div.input-group-prepend span{
 }
 
 /* events/show */
+#eventDetail div.jumbotron{
+    background: #eff2ee ;
+}
+
 div#map{
     width: 100%;
     height: 400px;
