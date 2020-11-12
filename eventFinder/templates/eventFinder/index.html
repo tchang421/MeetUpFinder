@@ -1,13 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-    <div class="container" id="eventIndexBanner">
-        <div class="jumbotron border border-white rounded" id='eventIndexBanner'>
-            <h1 class="display-3">Events index page</h1>
-            <p class="lead">Helper text</p>
-            <hr class="my-2">
-            <p>More info</p>
+    <div class="container">
+        <div class="jumbotron rounded" id='eventIndexBanner'>
+            <h1 class="display-3"><i class="fas fa-calendar-day"></i> Events</h1>
+            <hr class="my-1">
+            <p>Things that will happen, might happen, or could happen</p>
             <p class="lead">
-                <a class="btn btn-primary btn-lg" href="{% url 'eventFinder:create' %}" role="button">Create Event</a>
+                <a class="btn btn-outline-primary" href="{% url 'eventFinder:create' %}" role="button">Create Event</a>
             </p>
         </div>
     </div>
@@ -30,7 +29,7 @@
                 <div class="col-4">
                     <div class="card mb-5">
                         <div class="card-body">
-                            <a href="{% url 'eventFinder:show' event.id%}" class="card-title">Event Name: {{event.event_name}}</a>
+                            <p>Event Name: <a href="{% url 'eventFinder:show' event.id%}" class="card-title">{{event.event_name}}</a></p>
                             <p class="card-text">Event Type: {{event.event_type}}</p>
                             <p class="card-text">Created by: <a href="{% url 'userprofile:show' event.author.profile.id%}">{{event.author.profile.display_name}}</a></p>
                             <p class="card-text">Time: {{event.event_date}}</p>
