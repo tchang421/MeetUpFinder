@@ -115,7 +115,7 @@ ENV/
 
 .DS_Store
 *.sqlite3
-media/
+media/*
 *.pyc
 *.db
 *.pid
@@ -129,3 +129,8 @@ media/
 
 # eslint 
 .eslintrc.json
+
+# include default user avatar
+!media/user_avatars
+media/user_avatars/*
+!media/user_avatars/default.jpg
