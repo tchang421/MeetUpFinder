@@ -20,5 +20,4 @@ class UpdateView(UserPassesTestMixin, UpdateView):
     form_class = UserProfileForm
     template_name = 'userprofile/edit.html'
     def test_func(self):
-        print(self.request.user)
         return self.request.user.profile.id == self.kwargs['pk']
