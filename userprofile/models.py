@@ -8,7 +8,7 @@ class UserProfile(models.Model):
     display_name = models.CharField(max_length=40, null=True)
     bio = models.CharField(max_length=200, blank=True)
     join_date = models.DateTimeField(auto_now_add=True)
-    profile_pic = models.ImageField(upload_to = 'profile_pics', blank = True)
+    #profile_pic = models.ImageField(default = 'profile_pics/anon.jpg', upload_to = 'profile_pics', blank = True)
 
     def save(self, *args, **kwargs):
         if not self.display_name:
