@@ -10,7 +10,7 @@
                     </div>
                     {{form.display_name}}
                 </div>
-
+    
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text">Bio</span>
@@ -19,14 +19,7 @@
                     <div class="input-group-addon input-group-append">
                         <div class="input-group-text"><i class="glyphicon glyphicon-calendar"></i></div>
                     </div>
-                    <img src="{% static 'tutorial/media/profile_pics/anon.jpg' %}" width="240">
-                    <!--...
-                    {% if UserProfile.profile_pic %}
-                        <img src="{{ UserProfile.profile_pic.url }}" width="240">
-                    {% else %}
-                        <img src="{% static 'tutorial/media/profile_pics/anon.jpg' %}" width="240">
-                    {% endif %}
-                    -->
+                    {{form.profile_pic}}
                 </div>
                 <button type='submit' class="btn btn-primary">Update Profile</button>
             </div>
