@@ -17,7 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_DIR = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'tutorial/media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -175,10 +175,10 @@ SOCIAL_AUTH_PIPELINE = (
 )
 
 
-LOGIN_URL = '/accounts/login'
+LOGIN_URL = '/accounts/login/'
 
-LOGIN_REDIRECT_URL = '/events'
-LOGOUT_REDIRECT_URL = '/events'
+LOGIN_REDIRECT_URL = '/events/'
+LOGOUT_REDIRECT_URL = '/events/'
 
 GOOGLE_API_KEY = 'AIzaSyDwMQvVq5I887bnz3zAlz71Onjsq4_PYb0'
 
