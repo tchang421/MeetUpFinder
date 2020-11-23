@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from address.models import AddressField
 from geopy.geocoders.googlev3 import GoogleV3
 
+
 class Event(models.Model):
     event_name = models.CharField(max_length=200)
     event_date = models.DateTimeField(blank=True, null=True)
@@ -23,16 +24,18 @@ class Event(models.Model):
     longitude = models.DecimalField(
         decimal_places=7, max_digits=10, default=-78.507980)
     attendees = models.ManyToManyField(User, related_name="events_attended")
-    
+
     def save(self, *args, **kwargs):
 
         # save coordinates by geocoding address
-        geolocator = GoogleV3(api_key='AIzaSyDwMQvVq5I887bnz3zAlz71Onjsq4_PYb0');
-        location = None if not self.address else geolocator.geocode(self.address)
+        geolocator = GoogleV3(
+            api_key='AIzaSyDwMQvVq5I887bnz3zAlz71Onjsq4_PYb0')
+        location = None if not self.address else geolocator.geocode(
+            self.address)
         if location:
             self.latitude = location.latitude
             self.longitude = location.longitude
-        
+
         super().save(*args, **kwargs)
 
         # save author to attendees
@@ -43,3 +46,8 @@ class Event(models.Model):
 
     def get_absolute_url(self):
         return reverse("eventFinder:show", kwargs={"pk": self.pk})
+
+    def add_attendee(self, attendee, *args, **kwargs):
+        self.attendees.add(attendee)
+    def remove_attendee(self, attendee, *args, **kwargs):
+        self.attendees.remove(attendee)

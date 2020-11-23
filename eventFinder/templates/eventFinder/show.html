@@ -43,7 +43,12 @@
                     {% endfor %}
                 </ul>
             </div>
-            <a href="" class="btn btn-block btn-success my-3">Attend Event</a>
+            {% if user in event.attendees.all %}
+                <a href="{% url 'eventFinder:cancel' event.id %}" class="btn btn-block btn-danger my-3">Cancel Attendance</a>
+            {% endif %}
+            {% if not user in event.attendees.all %}
+                <a href="{% url 'eventFinder:attend' event.id %}" class="btn btn-block btn-success my-3">Attend Event</a>
+            {% endif %}
         </div>
     </div>
 </div>

@@ -8,4 +8,6 @@ urlpatterns = [
     path('<int:pk>/', views.ShowView.as_view(), name='show'),
     path('<int:pk>/edit/', views.UpdateView.as_view(), name='update'),
     path('<int:pk>/delete/', views.DeleteView.as_view(), name='delete'),
+    path('<int:pk>/attend/', views.AttendView.as_view(), name='attend'),
+    path('<int:pk>/cancel/', views.CancelView.as_view(), name='cancel'),
 ]
