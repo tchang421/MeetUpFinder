@@ -17,7 +17,7 @@ class Event(models.Model):
     pub_date = models.DateTimeField(auto_now_add=True)
     event_description = models.CharField(
         max_length=1000, default="No Description Provided")
-    author = models.ForeignKey(User, null=True, on_delete=CASCADE)
+    author = models.ForeignKey(User, null=True, on_delete=CASCADE, related_name='events_created')
     address = AddressField(null=True)
     latitude = models.DecimalField(
         decimal_places=7, max_digits=10, default=38.0336)
