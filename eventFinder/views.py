@@ -68,7 +68,7 @@ class DeleteView(LoginRequiredMixin,DeleteView):
     template_name="eventFinder/delete.html"
     success_url = reverse_lazy('eventFinder:index')
 
-class AttendView(RedirectView):
+class AttendView(LoginRequiredMixin, RedirectView):
     pattern_name ="eventFinder:show"
 
     def get_redirect_url(self, *args, **kwargs):
