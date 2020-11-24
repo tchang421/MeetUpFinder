@@ -39,7 +39,7 @@ class Event(models.Model):
         super().save(*args, **kwargs)
 
         # save author to attendees
-        self.attendees.add(self.author)
+        # self.attendees.add(self.author)
 
     def __str__(self):
         return self.event_name
