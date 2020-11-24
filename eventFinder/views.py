@@ -63,10 +63,12 @@ class UpdateView(UserPassesTestMixin, UpdateView):
     def test_func(self):
         return self.get_object().author == self.request.user
 
-class DeleteView(LoginRequiredMixin,DeleteView):
+class DeleteView(UserPassesTestMixin,DeleteView):
     model = Event
     template_name="eventFinder/delete.html"
     success_url = reverse_lazy('eventFinder:index')
+    def test_func(self):
+        return self.get_object().author == self.request.user
 
 class AttendView(LoginRequiredMixin, RedirectView):
     pattern_name ="eventFinder:show"
