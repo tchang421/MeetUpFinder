@@ -13,23 +13,43 @@
 {% endblock head %}
 {% block content %}
 <div class="container" id="eventDetail">
-    <div class="jumbotron">
-        <h1 class="display-3">{{event.event_name}}</h1>
-        <p class="lead">Event Date: {{event.event_date|date:'Y-m-d'}}</p>
-        <p class="lead">Event Type: {{event.event_type}}</p>
-        <hr class="my-2">
-        <h1 class="lead">{{event.event_description}}</h1>
-        <hr class="my-3">
-        <div class="d-flex justify-content-between">
-            <p>Address: <a href="https://www.google.com/maps/search/?api=1&query={{event.address|escape}}" target="_blank">{{event.address}}</a></p>
-            <a href="https://www.google.com/maps/dir/?api=1&destination={{event.address|escape}}" target="_blank">Get directions</a>
+    <div class="row">
+        <div class="col col-9">
+            <div class="jumbotron pt-4">
+                <h1 class="display-3">{{event.event_name}}</h1>
+                <p class="lead">Event Date: {{event.event_date|date:'Y-m-d'}}</p>
+                <p class="lead">Event Type: {{event.event_type}}</p>
+                <hr class="my-2">
+                <h1 class="lead">{{event.event_description}}</h1>
+                <hr class="my-3">
+                <div class="d-flex justify-content-between">
+                    <p>Address: <a href="https://www.google.com/maps/search/?api=1&query={{event.address|escape}}" target="_blank">{{event.address}}</a></p>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination={{event.address|escape}}" target="_blank">Get directions</a>
+                </div>
+                <div id="map"></div>
+                <p>Published by <a href="{% url 'userprofile:show' event.author.profile.id%}">{{event.author.profile.display_name}}</a> on {{event.pub_date|date:'Y-m-d'}}</p>
+                {% if user == event.author %}
+                    <a class="btn btn-primary" href="{% url 'eventFinder:update' event.id %}" role="button">Edit</a>
+                    <a class="btn btn-danger" href="{% url 'eventFinder:delete' event.id %}" role="button">Delete</a>
+                {% endif %}
+            </div>
         </div>
-        <div id="map"></div>
-        <p>Published by <a href="{% url 'userprofile:show' event.author.profile.id%}">{{event.author.profile.display_name}}</a> on {{event.pub_date|date:'Y-m-d'}}</p>
-        {% if user == event.author %}
-            <a class="btn btn-primary" href="{% url 'eventFinder:update' event.id %}" role="button">Edit</a>
-            <a class="btn btn-danger" href="{% url 'eventFinder:delete' event.id %}" role="button">Delete</a>
-        {% endif %}
+        <div class="col col-3">
+            <div class="card py-4 px-2">
+                <p class="lead">Attendees</p>
+                <ul class="list-group">
+                    {% for attendee in event.attendees.all %}
+                        <a href="{% url 'userprofile:show' attendee.profile.id %}">{{attendee.profile.display_name}}</a>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% if user in event.attendees.all %}
+                <a href="{% url 'eventFinder:cancel' event.id %}" class="btn btn-block btn-danger my-3">Cancel Attendance</a>
+            {% endif %}
+            {% if not user in event.attendees.all %}
+                <a href="{% url 'eventFinder:attend' event.id %}" class="btn btn-block btn-success my-3">Attend Event</a>
+            {% endif %}
+        </div>
     </div>
 </div>
 {% endblock content %}

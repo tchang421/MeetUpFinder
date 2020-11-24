@@ -2,10 +2,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import request
 from django.http.response import HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.urls.base import reverse_lazy
 from django.utils.decorators import method_decorator
+from django.views.generic.base import RedirectView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
@@ -62,7 +63,26 @@ class UpdateView(UserPassesTestMixin, UpdateView):
     def test_func(self):
         return self.get_object().author == self.request.user
 
-class DeleteView(LoginRequiredMixin,DeleteView):
+class DeleteView(UserPassesTestMixin,DeleteView):
     model = Event
     template_name="eventFinder/delete.html"
     success_url = reverse_lazy('eventFinder:index')
+    def test_func(self):
+        return self.get_object().author == self.request.user
+
+class AttendView(LoginRequiredMixin, RedirectView):
+    pattern_name ="eventFinder:show"
+
+    def get_redirect_url(self, *args, **kwargs):
+        event = get_object_or_404(Event, pk=kwargs['pk'])
+        event.add_attendee(self.request.user)
+        return super().get_redirect_url(*args, **kwargs)
+
+class CancelView(RedirectView):
+    pattern_name ="eventFinder:show"
+    
+    def get_redirect_url(self, *args, **kwargs):
+        event = get_object_or_404(Event, pk=kwargs['pk'])
+        event.remove_attendee(self.request.user)
+        return super().get_redirect_url(*args, **kwargs)
+

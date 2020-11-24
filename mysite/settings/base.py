@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_DIR = '/media/'
@@ -184,3 +184,4 @@ GOOGLE_API_KEY = 'AIzaSyDwMQvVq5I887bnz3zAlz71Onjsq4_PYb0'
 
 # Dummy value just so django-address won't complain
 JQUERY_URL =" "
+

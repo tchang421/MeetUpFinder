@@ -8,11 +8,48 @@
     <div class="container">
         <div class="jumbotron">
             <h1>{{userprofile.display_name}}'s Profile</h1>
-            <img src = "{{ userprofile.profile_pic.url }}" width = "240">
+            <img src = "{{ userprofile.profile_pic.url }}" width = "240" class="mb-5">
             {% if userprofile.bio %}
                 <hr>
                 <p>{{userprofile.bio}}</p>
             {% endif %}
+            <h2>Events Created</h2>
+            <hr>
+            <div class="container-fluid" id="eventCards">
+                <div class="row">
+                    {% for event in userprofile.user.events_created.all%}
+                        <div class="col col-4">
+                            <div class="card mb-5">
+                                <div class="card-body">
+                                    <p>Event Name: <a href="{% url 'eventFinder:show' event.id%}" class="card-title">{{event.event_name}}</a></p>
+                                    <p class="card-text">Event Type: {{event.event_type}}</p>
+                                    <p class="card-text">Created by: <a href="{% url 'userprofile:show' event.author.profile.id%}">{{event.author.profile.display_name}}</a></p>
+                                    <p class="card-text">Time: {{event.event_date}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <h2>Events Attended</h2>
+            <hr>
+            <div class="container-fluid" id="eventCards">
+                <div class="row">
+                    {% for event in userprofile.user.events_attended.all%}
+                        <div class="col col-4">
+                            <div class="card mb-5">
+                                <div class="card-body">
+                                    <p>Event Name: <a href="{% url 'eventFinder:show' event.id%}" class="card-title">{{event.event_name}}</a></p>
+                                    <p class="card-text">Event Type: {{event.event_type}}</p>
+                                    <p class="card-text">Created by: <a href="{% url 'userprofile:show' event.author.profile.id%}">{{event.author.profile.display_name}}</a></p>
+                                    <p class="card-text">Time: {{event.event_date}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
             {% if userprofile.user == user %}
                 <hr>
                 <a href="{% url 'userprofile:update' userprofile.id%}" class="btn btn-primary">Edit</a>
