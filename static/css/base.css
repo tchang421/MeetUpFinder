@@ -75,3 +75,11 @@ div#map{
     width: 100%;
     height: 400px;
 }
+
+
+/* profiles/show */
+#profile_content img{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
