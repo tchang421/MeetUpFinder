@@ -53,7 +53,7 @@ class EventIndexViewTest(TestCase):
         self.assertQuerysetEqual(response.context['events'], [])
 
     def test_added_events_are_displayed(self):
-        test_event = make_event(event_name="testEvent", author=self.test_user)
+        test_event = make_event(event_name="testEvent", author=self.test_user, event_date=timezone.now()+timedelta(1))
         response = self.client.get(reverse('eventFinder:index'))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Event Name')
