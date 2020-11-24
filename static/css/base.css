@@ -11,6 +11,11 @@ a{
     color: #008BF8;
 }
 
+.fill-light{
+    background: #eff2ee;
+}
+
+
 /* base navbar */
 #navbar{
     font-family: 'Quicksand', sans-serif;
@@ -38,24 +43,16 @@ section#navbar a{
     color: #9e856a
 }
 
-section#navbar #userOptionsDropdown{
+/* section#navbar #userOptionsDropdown{
     background: #eff2ee;
     color: #2f2f35
-}
+} */
 
 section#navbar #userOptionsDropdown a{
     color: #2f2f35
 }
 
 /* events/index */
-div#eventIndexBanner{
-    background: #eff2ee;
-    color: #2f2f35;
-}
-
-div#eventCards div.card{
-    background: #eff2ee;
-}
 
 /* events/new */
 form#eventNewForm{
