@@ -1,4 +1,5 @@
 import datetime
+from datetime import date
 
 from django.db import models
 from django.db.models.deletion import CASCADE
@@ -23,7 +24,7 @@ class Event(models.Model):
         decimal_places=7, max_digits=10, default=38.0336)
     longitude = models.DecimalField(
         decimal_places=7, max_digits=10, default=-78.507980)
-    attendees = models.ManyToManyField(User, related_name="events_attended")
+    attendees = models.ManyToManyField(User, related_name="events_attended",blank=True)
 
     def save(self, *args, **kwargs):
 
@@ -51,3 +52,7 @@ class Event(models.Model):
         self.attendees.add(attendee)
     def remove_attendee(self, attendee, *args, **kwargs):
         self.attendees.remove(attendee)
+
+    # def is_past(self):
+    #     now = timezone.now()
+    #     return self.event_date < now
