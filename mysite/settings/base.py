@@ -184,3 +184,4 @@ GOOGLE_API_KEY = 'AIzaSyDwMQvVq5I887bnz3zAlz71Onjsq4_PYb0'
 
 # Dummy value just so django-address won't complain
 JQUERY_URL =" "
+
