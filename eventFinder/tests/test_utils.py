@@ -9,6 +9,7 @@ def make_event(**kwargs):
 
 def make_user(**kwargs):
     newUser = User(**kwargs)
+    newUser.set_password(kwargs['password']);
     newUser.save();
     newProfile = UserProfile(user=newUser)
     newProfile.save();
