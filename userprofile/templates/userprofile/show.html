@@ -6,9 +6,9 @@
 
 {% block content %}
     <div class="container">
-        <div class="jumbotron">
+        <div class="jumbotron fill-light">
             <h1>{{userprofile.display_name}}'s Profile</h1>
-            <img src = "{{ userprofile.profile_pic.url }}" width = "240" class="mb-5">
+            <img src = "{{ userprofile.profile_pic.url }}" width = "240" class="mb-5 d-inline-block">
             {% if userprofile.bio %}
                 <hr>
                 <p>{{userprofile.bio}}</p>
@@ -19,7 +19,7 @@
                 <div class="row">
                     {% for event in userprofile.user.events_created.all%}
                         <div class="col col-4">
-                            <div class="card mb-5">
+                            <div class="card mb-5 shadow">
                                 <div class="card-body">
                                     <p>Event Name: <a href="{% url 'eventFinder:show' event.id%}" class="card-title">{{event.event_name}}</a></p>
                                     <p class="card-text">Event Type: {{event.event_type}}</p>
@@ -38,7 +38,7 @@
                 <div class="row">
                     {% for event in userprofile.user.events_attended.all%}
                         <div class="col col-4">
-                            <div class="card mb-5">
+                            <div class="card mb-5 shadow">
                                 <div class="card-body">
                                     <p>Event Name: <a href="{% url 'eventFinder:show' event.id%}" class="card-title">{{event.event_name}}</a></p>
                                     <p class="card-text">Event Type: {{event.event_type}}</p>
