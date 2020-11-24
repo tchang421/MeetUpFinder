@@ -5,6 +5,7 @@ from django.http.response import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.urls.base import reverse_lazy
+from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.views.generic.base import RedirectView
 from django.views.generic.detail import DetailView
@@ -33,9 +34,16 @@ class IndexView(ListView):
     
     def get_queryset(self):
         ordering = self.request.GET.get('ordering')
+        show_past_events = self.request.GET.get('show_past_events')
+        events_to_show = ''
+        
         if not ordering:
             ordering = ordering_name_to_field['Name']
-        return Event.objects.all().order_by(ordering)
+        if show_past_events :
+            events_to_show = Event.objects.all()
+        else:
+            events_to_show = Event.objects.filter(event_date__gt=timezone.now())
+        return events_to_show.order_by(ordering)
 
 class NewView(LoginRequiredMixin, CreateView):
     model = Event
